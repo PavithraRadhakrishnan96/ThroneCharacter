@@ -36,11 +36,6 @@ class NetworkModule {
             .build()
     }
 
-    /**
-     * Provides OkHttpClient to set the time out and logging
-     * @return the OkHttpClient object
-     */
-
     @Provides
     @Singleton
     fun provideOkhttpClient(): OkHttpClient {

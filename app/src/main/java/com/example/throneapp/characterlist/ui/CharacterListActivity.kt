@@ -19,24 +19,12 @@ class CharacterListActivity : AppCompatActivity() {
         binding = ActivityMovieListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         prepareRecyclerView()
-        viewModel = ViewModelProvider(this)[ThroneViewModel::class.java]
-        viewModel.observeCharacterLiveData().observe(this, { characterList ->
-            characterListAdapter.setCharacterList(characterList)
-            binding.pbLoad.visibility= View.INVISIBLE
-
-        })
-        viewModel.errorMessage.observe(this, { errorMessage ->
-            if (errorMessage != null) showError(errorMessage)
-        })
-
-
+        setViewModel()
     }
 
     private fun showError(errorMessage: String) {
         Toast.makeText(this,errorMessage,Toast.LENGTH_LONG).show()
         binding.pbLoad.visibility= View.INVISIBLE
-
-
     }
 
     private fun prepareRecyclerView() {
@@ -47,4 +35,15 @@ class CharacterListActivity : AppCompatActivity() {
         }
     }
 
+    fun setViewModel(){
+        viewModel = ViewModelProvider(this)[ThroneViewModel::class.java]
+        viewModel.observeCharacterLiveData().observe(this, { characterList ->
+            characterListAdapter.setCharacterList(characterList)
+            binding.pbLoad.visibility= View.INVISIBLE
+
+        })
+        viewModel.errorMessage.observe(this, { errorMessage ->
+            if (errorMessage != null) showError(errorMessage)
+        })
+    }
 }

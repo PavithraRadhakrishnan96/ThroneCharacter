@@ -25,16 +25,16 @@ class CharacterListAdapter : RecyclerView.Adapter<CharacterListAdapter.ViewHolde
             .load(characterList[position].imageUrl)
             .into(holder.binding.ivImage)
         holder.binding.tvMovieName.text = characterList[position].fullName
-    holder.binding.tvTitle.text=characterList[position].title
-    holder.binding.tvFamily.text=characterList[position].family
-    holder.binding.tvImage.text=characterList[position].image
+        holder.binding.tvTitle.text = characterList[position].title
+        holder.binding.tvFamily.text = characterList[position].family
+        holder.binding.tvImage.text = characterList[position].image
     }
 
     override fun getItemCount(): Int {
         return characterList.size
     }
 
-    fun setCharacterList(characters : List<Characters>){
+    fun setCharacterList(characters: List<Characters>) {
         this.characterList = characters as ArrayList<Characters>
         notifyDataSetChanged()
     }

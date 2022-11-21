@@ -31,9 +31,10 @@ class ThroneViewModel : ViewModel() {
 
         injector.inject(this)
 
+        //To check internat available/else data fetched from db
         if(Util.checkForInternet())
         getPopularMovies()
-        else getFilm()
+        else getAllRecords()
 
 
     }
@@ -47,13 +48,11 @@ class ThroneViewModel : ViewModel() {
                     result.forEach {
                         insertRecord(it)
                     }
-                    getFilm()
-
+                    getAllRecords()
                 },
                 {
                     errorMessage.value = it.toString()
                 }
-
             )
 
     }
@@ -63,14 +62,15 @@ class ThroneViewModel : ViewModel() {
     }
 
 
-    fun insertRecord(characters: Characters) {
+    private fun insertRecord(characters: Characters) {
         characterDao.insert(characters)
     }
 
 
-    fun getFilm() {
-        val list = characterDao.getFilm()
+    private fun getAllRecords() {
+        val list = characterDao.getAllRecords()
         characterLiveData.value = list
+        if(list.isEmpty())errorMessage.value="No Data Found"
     }
 
 
