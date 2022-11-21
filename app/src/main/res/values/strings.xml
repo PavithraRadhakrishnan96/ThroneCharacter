@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Throne Characters</string>
+    <string name="error_msg">Data not found</string>
+</resources>
